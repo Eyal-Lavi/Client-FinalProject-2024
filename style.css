@@ -1,0 +1,574 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #dac497;
+}
+
+
+
+
+header{
+    background: linear-gradient(90deg, #FFB84D, #FFE6A9); /* מעבר צבע עדין */
+    width: 100%;
+    display: flex;
+    height: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid #FFB84D; 
+    position: relative;
+    transform: translateY(-100%);
+    animation: slideIn 1s ease-out forwards;
+}
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+#logoDiv{
+    /* background-color: coral; */
+    width: 25%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+#logoDiv img{
+    width: 70px;
+    height: 70px;
+    margin-left: 30px;
+    animation: float 3s ease-in-out infinite;
+}
+#logoDiv p{
+    margin-left: 15px;
+    font-size: 28px;
+    color: rgb(41, 29, 8);
+    font-weight: bold;
+    font-family: 'Great Vibes' , cursive;
+    animation: float 3s ease-in-out infinite;
+
+}
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* עלייה קלה */
+    }
+}
+#searchBarDiv{
+    /* background-color: violet; */
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#buttonWrapper{
+    background-color: white;
+    width: 90%;
+    height: 30%;
+    border-radius: 40px;
+    display: flex;
+}
+#buttonWrapper input{
+    height: 100%;
+    width: 75%;
+    border-radius: 40px;
+    border-style: none;
+    background-color: transparent;
+    font-size: 16px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+#buttonWrapper input:focus{
+    outline: none;
+}
+/* #buttonWrapper button{
+    border-radius: 40px;
+    height: 100%;
+    width: 25%;
+    border-style: none;
+    background: linear-gradient(to right,rgb(228, 162, 63),rgb(255, 123, 0));
+    color: white;
+} */
+#searchButton {
+    border: none;
+    background: linear-gradient(to right, yellow, orange);
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* מרווח בין האייקון לטקסט */
+    width: 25%;
+}
+#searchButton svg {
+    fill: white;
+    width: 20px;
+    height: 20px;
+}
+/* #favoritesDiv{
+    background-color: darkgoldenrod;
+    width: 25%;
+
+    height: 100%;
+} */
+#favoritesDiv {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+    /* background-color: aqua; */
+}
+
+#heartButton {
+    margin-right: 25px;
+    /* background: linear-gradient(to right, pink, red); */
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 56px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    transition: transform 0.2s;
+}
+#heartButton:hover {
+    transform: scale(1.1);
+}
+#heartButton:active {
+    transform: scale(0.9);
+}
+
+main{
+    /* background-color: aliceblue; */
+    height: 89%;
+    width: 100%;
+    display: flex;
+}
+
+#searchResultDiv{
+    width: 25%;
+    height: 100%;
+    /* background-color: rgb(76, 126, 126); */
+    /* background-color: red; */
+    /* background-color: rgb(226, 226, 226); */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+#titleResultDiv{
+    text-align: center;
+    font-size: 26px;
+    color: black;
+    margin: 25px;
+    font-family: 'Great Vibes' , cursive;
+    text-decoration: underline;
+
+}
+#searchResultDiv ul{
+    width: 80%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0px 0px 8px 5px rgba(0,0,0,0.15);
+    max-height: 120vh;
+    background-color: #FFF1DC;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 10px 10px 10px;
+}
+#searchResultDiv ul li{
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(229, 223, 205);
+    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.15);
+    border-radius: 5px;
+    min-height: 95px;
+}
+#searchResultDiv ul li img{
+    width: 85px;
+    height: 85px;
+    margin-right: 15px;
+    margin-left: 25px;
+    border-radius: 10px;
+}
+
+
+#recipeDiv{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, 0.15);
+    background-color: #dbbf88;
+
+}
+#titleRecipe{
+    /* background-color: aquamarine; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
+    font-family: 'Great Vibes' , cursive;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#titleRecipe h2{
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+#titleRecipe img{
+    width: 95%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+#helpBarRecipe{
+    background-color: #bfa266;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#timeDataDiv{
+    display: flex;
+    align-items: center;
+    /* background-color: blue; */
+    gap: 6px;
+}
+#timeDataDiv img{
+    width: 20px;
+    height: 20px;
+}
+#servingsDataDiv{
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+#servingsDataDiv img{
+    width: 20px;
+    height: 20px;
+}
+/* #servingsDataDiv button{
+    background-color: rgb(248, 245, 241);
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 24px;
+}
+#servingsDataDiv button:hover {
+    transform: scale(1.2);
+} */
+#servingsDataDiv button {
+    background: linear-gradient(145deg, #FFE6A9, #FFB84D);
+    width: 25px; 
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #FFD27F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(255, 117, 140, 0.2); /* צל רך */
+    color: #5B4636;
+}
+
+#servingsDataDiv button:hover {
+    transform: scale(1.2);
+    background: linear-gradient(145deg, #FFB84D, #FFE6A9);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(255, 117, 140, 0.3);
+}
+
+#servingsDataDiv button:active {
+    transform: scale(0.9);
+    background: linear-gradient(145deg, #FFB84D, #FF8E00);
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+/* #addWhislistDiv button{
+    margin-right: 25px;
+    background: linear-gradient(to right, pink, red);
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 56px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#addWhislistDiv button:hover {
+    transform: scale(1.1);
+}
+#addWhislistDiv button:active {
+    transform: scale(0.9);
+} */
+#addWhislistDiv{
+    /* background-color: red; */
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+#addWhislistDiv button {
+    background: linear-gradient(to right, #f98109, #ff9807);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(255, 117, 140, 0.5), 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* מאפשר אפקטים מתקדמים */
+    overflow: hidden;
+}
+
+#addWhislistDiv button::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    opacity: 0.8;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#addWhislistDiv button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+}
+
+#addWhislistDiv button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(252, 154, 27, 0.7), 0 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to right, #fffdfd, #e79e46);
+    color: orange;
+}
+
+#addWhislistDiv button:active {
+    transform: scale(0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#recipeDataDiv{
+    /* background-color: rgb(178, 120, 120); */
+    background-color: #bfa266;
+    height: calc(80% - 210px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    padding: 25px 0px;
+}
+#recipeDataDiv ul{
+    /* background-color: rgb(226, 226, 226); */
+    /* background-color:  red; */
+    
+    display: flex;
+    flex-wrap: wrap;
+    /* height: 80%; */
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#recipeDataDiv li{
+    /* background-color:  aliceblue; */
+    display: flex;
+    gap: 10px;
+    /* background-color: chartreuse; */
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+}
+#recipeDataDiv img{
+    width: 20px;
+    height: 20px;
+}
+#recipeDataDiv p{
+    width: 240px;
+}
+#recipeDataDiv div{
+    height: 20%;
+    width: 100%;
+    /* background-color: darkgreen; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+#recipeDataDiv button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    background: linear-gradient(to right, yellow, orange);
+    border: none;
+    color: white;
+    font-size: 20px;
+    width: 170px;
+    height: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+#recipeDataDiv button:hover {
+    transform: scale(1.1);
+}
+#recipeDataDiv button:active {
+    transform: scale(0.9);
+}
+#recipeLinkDiv{
+    background-color: #c9b180;
+    /* height: 20%; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 40px;
+}
+#recipeLinkDiv p{
+    text-align: center;
+    /* background-color: yellowgreen; */
+}
+#recipeLinkDiv button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    background: linear-gradient(to right, yellow, orange);
+    border: none;
+    color: white;
+    font-size: 20px;
+    width: 170px;
+    height: 50px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+#recipeLinkDiv button:hover {
+    transform: scale(1.1);
+}
+#recipeLinkDiv button:active {
+    transform: scale(0.9);
+}
+#shoppingListDiv{
+    width: 25%;
+    /* height: 100%; */
+    /* background-color: white; */
+    /* background-color: rgb(226, 226, 226); */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#titleDiv{
+    text-align: center;
+    font-size: 26px;
+    color: orange;
+    margin: 25px;
+    font-family: 'Great Vibes' , cursive;
+    text-decoration: underline;
+}
+#shoppingListDiv ul{
+    width: 80%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0px 0px 8px 5px rgba(0,0,0,0.15);
+    max-height: 120vh;
+    background-color: #FFF1DC;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 10px 10px 10px;
+    
+}
+#shoppingListDiv li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* width: 95%; */
+    background-color: rgb(229, 223, 205);
+    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.15);
+    border-radius: 5px;
+    min-height: 95px;
+}
+#shoppingListDiv li input{
+    width: 25%;
+    height: 25px;
+    /* background-color: brown; */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#shoppingListDiv li p{
+    /* background-color: aqua; */
+    width: 60%;
+    margin-right: 10px;
+}
+#shoppingListDiv li button{
+    background-color: orange;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+#shoppingListDiv li button:hover {
+    transform: scale(1.2);
+}
