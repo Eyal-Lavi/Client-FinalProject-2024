@@ -137,11 +137,16 @@ header{
     /* background: linear-gradient(to right, pink, red); */
     background-color: transparent;
     border: none;
-    color: white;
+    background: linear-gradient(to right, rgb(233, 233, 233), rgb(255, 102, 0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 56px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     transition: transform 0.2s;
@@ -152,6 +157,96 @@ header{
 #heartButton:active {
     transform: scale(0.9);
 }
+
+
+.hidden {
+    display: none; /* החבא את החלון כברירת מחדל */
+}
+
+#wishlistContainer {
+    position: relative;
+    display: inline-block;
+}
+
+#wishlistPopup {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    width: 250px;
+    background: linear-gradient(to bottom, #fff8e1, #ffe6a9);
+    border: 2px solid #ffb84d;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateY(-10px);
+    opacity: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#wishlistPopup h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #5b4636;
+    text-align: center;
+    border-bottom: 2px solid #ffb84d;
+    padding-bottom: 10px;
+    font-weight: bold;
+    width: 100%;
+}
+
+#wishlistPopup ul {
+    width: 100%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* box-shadow: 0px 0px 8px 5px rgba(0,0,0,0.15); */
+    max-height: 120vh;
+    /* background-color: #FFF1DC; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 10px 10px 10px;
+}
+
+
+#wishlistPopup li {
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(229, 223, 205);
+    box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.15);
+    border-radius: 5px;
+    min-height: 95px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+#wishlistPopup li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+#wishlistContainer:hover #wishlistPopup {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+}
+#wishlistContainer ul li img{
+    width: 85px;
+    height: 85px;
+    margin-right: 15px;
+    margin-left: 25px;
+    border-radius: 50px;
+}
+
 
 main{
     /* background-color: aliceblue; */
@@ -175,7 +270,7 @@ main{
 #titleResultDiv{
     text-align: center;
     font-size: 26px;
-    color: black;
+    color: orange;
     margin: 25px;
     font-family: 'Great Vibes' , cursive;
     text-decoration: underline;
@@ -203,13 +298,19 @@ main{
     box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.15);
     border-radius: 5px;
     min-height: 95px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+#searchResultDiv ul li:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 #searchResultDiv ul li img{
     width: 85px;
     height: 85px;
     margin-right: 15px;
     margin-left: 25px;
-    border-radius: 10px;
+    border-radius: 50px;
 }
 
 
@@ -229,12 +330,13 @@ main{
     flex-direction: column;
     align-items: center;
     height: 600px;
-    font-family: 'Great Vibes' , cursive;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 #titleRecipe h2{
-    font-weight: 600;
+    /* font-weight: bold; */
+    /* font-family: 'Great Vibes' , cursive; */
+    font-size: 36px;
     padding-bottom: 20px;
 }
 #titleRecipe img{
@@ -250,6 +352,9 @@ main{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    border-top: 2px solid #5b4636;
+    box-shadow: 0px 0px 4px 4px rgba(0,0,0,0.15);
+
 }
 #timeDataDiv{
     display: flex;
@@ -396,7 +501,8 @@ main{
 
 #recipeDataDiv{
     /* background-color: rgb(178, 120, 120); */
-    background-color: #bfa266;
+    /* background-color: #bfa266; */
+    /* border-bottom: 2px solid #5b4636; */
     height: calc(80% - 210px);
     width: 100%;
     display: flex;
@@ -466,7 +572,9 @@ main{
     transform: scale(0.9);
 }
 #recipeLinkDiv{
-    background-color: #c9b180;
+    /* background-color: #c9b180; */
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.15);
+    border-top: 2px solid #5b4636;
     /* height: 20%; */
     width: 100%;
     display: flex;
@@ -544,6 +652,9 @@ main{
     box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.15);
     border-radius: 5px;
     min-height: 95px;
+    /* justify-content: center; */
+    padding-left: 10px;
+    padding-right: 10px;
 }
 #shoppingListDiv li input{
     width: 25%;
@@ -558,17 +669,29 @@ main{
     margin-right: 10px;
 }
 #shoppingListDiv li button{
-    background-color: orange;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
-    border: none;
+    background: linear-gradient(145deg, #FFE6A9, #FFB84D);
+    width: 25px; 
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #FFD27F;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(255, 117, 140, 0.2); /* צל רך */
+    color: #5B4636;
 }
 #shoppingListDiv li button:hover {
     transform: scale(1.2);
+    background: linear-gradient(145deg, #FFB84D, #FFE6A9);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(255, 117, 140, 0.3);
+}
+
+#shoppingListDiv li button:active {
+    transform: scale(0.9);
+    background: linear-gradient(145deg, #FFB84D, #FF8E00);
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
 }
