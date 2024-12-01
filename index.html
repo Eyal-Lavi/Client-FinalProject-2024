@@ -7,6 +7,9 @@
     <title>Food</title>
 </head>
 <body>
+    <video autoplay muted loop id="backgroundVideo">
+        <source src="https://www.pexels.com/download/video/2941104/?fps=23.97599983215332&h=2160&w=4096" type="video/mp4">
+    </video>
     <header>
         <div id="logoDiv">
             <img src="images/restaurant.png" alt="logo">
@@ -29,34 +32,6 @@
                 <div id="wishlistPopup" class="hidden">
                     <h3>Your Wishlist</h3>
                     <ul>
-                        <li>
-                            <img src="images/pizza.jpg" alt="">
-                            <div>
-                                <h4>BEST PIZZA DOUGH</h2>
-                                <p>101 coanashd</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="images/pizza.jpg" alt="">
-                            <div>
-                                <h4>BEST PIZZA DOUGH</h2>
-                                <p>101 coanashd</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="images/pizza.jpg" alt="">
-                            <div>
-                                <h4>BEST PIZZA DOUGH</h2>
-                                <p>101 coanashd</p>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="images/pizza.jpg" alt="">
-                            <div>
-                                <h4>BEST PIZZA DOUGH</h2>
-                                <p>101 coanashd</p>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -64,324 +39,49 @@
     </header>
     <main>
         <div id="searchResultDiv">
+            <video autoplay muted loop id="searchVideo">
+                <source src="https://www.pexels.com/download/video/4253333/?fps=25.0&h=4096&w=2160" type="video/mp4">
+            </video>
             <p id="titleResultDiv">Recipes</p>
-            <ul id="titleResultUL">
-                <!-- <li>
-                    <img src="images/pizza.jpg" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/pizza.jpg" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/pizza.jpg" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/pizza.jpg" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>             <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>             <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>             <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li>
-                <li>
-                    <img src="images/restaurant.png" alt="">
-                    <div>
-                        <h4>BEST PIZZA DOUGH</h2>
-                        <p>101 coanashd</p>
-                    </div>
-                </li> -->
+            <ul id="ulResultDiv">
             </ul>
         </div>
         <div id="recipeDiv">
-            <!-- <div id="titleRecipe">
-                <h2>BEST PIZZA DOUGH</h2>
-                <img src="images/pizza.jpg" alt="food image">
-            </div> -->
-            <!-- <div id="helpBarRecipe">
-                <div id="timeDataDiv">
-                    <img src="images/clock.png" alt="">
-                    <p>60 MINUTES</p>
+            <div id="welcomeSection">
+                <h1>Welcome to the World of Flavors!</h1>
+                <p>
+                    Explore a universe of culinary inspiration where every recipe is a journey. From savory classics to modern masterpieces, 
+                    we bring you a curated collection of over <strong>1,000,000 recipes</strong> designed to excite your taste buds. 
+                    Whether you're looking to impress your guests or whip up a quick meal for the family, we've got you covered!
+                </p>
+                <p>
+                    Use the search bar above to discover your next favorite dish, add recipes to your wishlist, and create unforgettable meals. 
+                    Let the aroma of creativity fill your kitchen as you embark on this delicious adventure.
+                </p>
+                <p>
+                    Connect with a community of food enthusiasts, share your creations, and discover unique twists on your favorite dishes. 
+                    Our platform is designed to make cooking easy, accessible, and, most importantly, fun for everyone.
+                </p>
+                <div id="welcomeImage">
+                    <img src="images/cookingImage.jpg" alt="A table full of delicious dishes">
                 </div>
-                <div id="servingsDataDiv">
-                    <img src="images/people.png" alt="">
+                <p>
+                    Prioritize your health with our recipes designed to suit your dietary preferences. From vegan to keto, 
+                    and everything in between, we ensure that you find meals that align with your lifestyle, without compromising on taste.
+                </p>
+                <p>
+                    Embark on a global culinary tour with our collection of recipes from around the world. Experience the bold flavors of Mexico, 
+                    the delicate spices of India, the rich aromas of Italy, and much more. Let every meal be an opportunity to travel without leaving your kitchen!
+                </p>
 
-                    <p>6 SERVINGS</p>
-                    <button>-</button>
-                    <button>+</button>
-                </div>
-                <div id="addWhislistDiv">
-                    <button>&#9829;</button>
-                </div>
-            </div> -->
-            <div id="recipeDataDiv">
-                <ul>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio asjda sda sjd asdajs hdjashd jaajbsd asdj  njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio asjda sda sjd asdajs hdjashd jaajbsd asdj  njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    <li>
-                        <img src="images/check.png" alt="">
-                        <p>Software sasdio njaek ejjas kmmas</p>
-                    </li>
-                    
-                </ul>
-                <div>
-                    <button>&#128722; Add to cart</button>
-                </div>
-            </div>
-            <div id="recipeLinkDiv">
-                <h2>HOW TO COOK IT</h2>
-                <p>Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, beatae. adipisicing elit. Et neque reprehenderit totam cupiditate molestiae minima debitis, praesentium sunt nihil reiciendis.</p>
-                <button>
-                    DIRECTIONS &#8594;
-                </button>
-                
             </div>
         </div>
         <div id="shoppingListDiv">
+            <video autoplay muted loop id="shoppingVideo">
+                <source src="https://www.pexels.com/download/video/3298478/?fps=25.0&h=4096&w=2160" type="video/mp4">
+            </video>
             <p id="titleDiv">My shopping list</p>
             <ul>
-                <li>
-                    <input type="text">
-                    <p>1your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>2your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>3your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>4your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>5your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>6your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>7your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>8your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
-                <li>
-                    <input type="text">
-                    <p>9your favorite pizbnabsdhas bahs dhasdbvhjvdaj we used this</p>
-                    <button>x</button>
-                </li>
             </ul>
         </div>
     </main>
