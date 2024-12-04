@@ -1,9 +1,12 @@
+// import { MyStorageService } from "./MyStorageService";
+
 class App {
     constructor() {
         this.initialVariables();
         this.addEvents();
+        debugger;
         this.updateWishlist();
-        
+
     }
 
     initialVariables() {
@@ -23,13 +26,13 @@ class App {
             this.updateResultsOfSearching(this.searchInput.value);
 
         })
-        this.searchInput.addEventListener("keyup",(event)=>{
-            if(event.key === "Enter"){
+        this.searchInput.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
                 this.updateResultsOfSearching(this.searchInput.value)
             }
         })
     }
-    hideVideos(){
+    hideVideos() {
         const videoResultDiv = document.querySelector("#searchResultDiv video");
         const videoShoppingDiv = document.querySelector("#shoppingListDiv video");
         const backgroundVideo = document.querySelector("#backgroundVideo");
@@ -38,18 +41,19 @@ class App {
         videoResultDiv.style.display = "none";
         videoShoppingDiv.style.display = "none";
     }
-    async updateResultsOfSearching(dataTOsearch) {
-        console.log("updateResultsOfSearching running .....");
+    async updateResultsOfSearching(dataTOsearch) {//update Searching list
         this.hideVideos();
-        
+
         const recipeDataResult = await useApiFood("searchFood", dataTOsearch);
 
         const titleResultDiv = document.querySelector("#titleResultDiv");
         titleResultDiv.style.display = "flex";
         this.ulResultOfSearching.style.display = "flex";
 
+        // this.ulResultOfSearching.innerHTML = "";
+
         const frag = document.createDocumentFragment();
-        
+
         recipeDataResult.forEach(recipe => {
             const li = document.createElement("li");
             const img = document.createElement("img");
@@ -58,22 +62,28 @@ class App {
             li.appendChild(img);
             li.appendChild(div);
             div.appendChild(h2);
-            // console.log(recipe.title);
 
+            li.id = recipe.id;
             img.src = recipe.image;
             h2.textContent = recipe.title;
 
-
-            li.addEventListener('click', () => {
-                //some code that use recipe.id to show data on center page
-                this.updateInformationAboutRecipe(recipe);
-
-            })
             frag.appendChild(li);
         });
-        this.ulResultOfSearching.appendChild(frag);
+        this.ulResultOfSearching.replaceChildren(frag);
+
+        this.ulResultOfSearching.addEventListener("click", (event) => {
+            const clickedLi = event.target.closest("li");
+            if (clickedLi) {
+                const recipe = recipeDataResult.find(r => r.id == clickedLi.id);
+                if (recipe) {
+                    this.updateInformationAboutRecipe(recipe);
+                } else {
+                    console.error("Error on updateResultsOfSearching -> this.ulResultOfSearching.addEventListener");
+                }
+            }
+        })
     }
-    async updateInformationAboutRecipe(recipe) {
+    async updateInformationAboutRecipe(recipe) {//update Information list
         this.removePreviousData();
         this.hideVideos();
 
@@ -124,7 +134,7 @@ class App {
         const buttonM = document.createElement("button");
         buttonM.textContent = "-";
 
-        buttonM.addEventListener("click",() =>{
+        buttonM.addEventListener("click", () => {
             data = this.updateRecipeForServings(data, parseInt(data.servings) - 1);
             this.updateServingsData(data);
         });
@@ -146,17 +156,17 @@ class App {
         const addWishlistDiv = document.createElement("div")
         addWishlistDiv.id = "addWishlistDiv";
         const addWishlistDivButton = document.createElement("button");
-        if(this.recipeExistOnWishlist(recipe)){
+        if (this.recipeExistOnWishlist(recipe)) {
             addWishlistDivButton.setAttribute("id", "onWishlist");
 
-        }else{
+        } else {
             addWishlistDivButton.removeAttribute("id");
 
         }
         addWishlistDivButton.innerHTML = "&#9829;";
 
-        addWishlistDivButton.addEventListener("click" , ()=>{
-            this.addRecipeToLocalStorage(recipe);
+        addWishlistDivButton.addEventListener("click", () => {
+            this.addORremoveRecipeToLocalStorage(recipe);
         })
         addWishlistDiv.appendChild(addWishlistDivButton);
 
@@ -190,14 +200,14 @@ class App {
         const buttonAddToCart = document.createElement("button");
         buttonAddToCart.innerHTML = "&#128722; Add to cart";
 
-        buttonAddToCart.addEventListener("click",()=>{
+        buttonAddToCart.addEventListener("click", () => {
             console.log(data);
-            
+
             this.addRecipeItemsForShoppingCart(data);
         })
         divAddToCart.appendChild(buttonAddToCart);
         recipeDataDiv.appendChild(divAddToCart);
-        
+
         frag.appendChild(recipeDataDiv);
 
         const recipeLinkDiv = document.createElement("div");
@@ -216,13 +226,13 @@ class App {
         recipeLinkDiv.appendChild(buttonRecipeLinkDiv);
 
         frag.appendChild(recipeLinkDiv);
-        
+
         if (this.recipeDiv.firstChild) {
             this.recipeDiv.insertBefore(frag, this.recipeDiv.firstChild);
         }
 
     }
-    updateServingsData(data){
+    updateServingsData(data) {
         const frag = document.createDocumentFragment();
         const recipeDataUL = document.querySelector("#recipeDataDiv ul");
         const servingsDataP = document.querySelector("#servingsDataDiv p");
@@ -236,7 +246,7 @@ class App {
             const p = document.createElement("p");
 
             img.src = "images/check.png";
-            p.textContent = `${element.amount.toFixed(2)} ${element.unit} ${element.name}`; // full
+            p.textContent = `${element.amount.toFixed(2)} ${element.unit} ${element.name}`;
 
             li.appendChild(img);
             li.appendChild(p);
@@ -246,7 +256,7 @@ class App {
     }
     removePreviousData() {
         console.log("this.removePreviousData");
-        
+
         const welcomeSection = document.querySelector("#welcomeSection");
         welcomeSection.style.display = "none";
 
@@ -262,75 +272,111 @@ class App {
             this.recipeDiv.removeChild(recipeLinkDiv);
         }
     }
-    addRecipeToLocalStorage(recipe){
-        let dataRecipesLS = localStorage.getItem("Recipes");
-        dataRecipesLS = JSON.parse(dataRecipesLS);
+    addORremoveRecipeToLocalStorage(recipe) {
+        // let dataRecipesLS = MyStorageService.getRecipes();
+        debugger;
 
         const addWishlistDivButton = document.querySelector("#addWishlistDiv button");
 
-        if(!dataRecipesLS){
-            dataRecipesLS = [];
-        }
-        
-        const exist = dataRecipesLS.some(tempRecipe => tempRecipe.id === recipe.id);
-        
-        if(exist){
-            dataRecipesLS = dataRecipesLS.filter(r => r.id !== recipe.id);
-            localStorage.setItem("Recipes",JSON.stringify(dataRecipesLS));
-            addWishlistDivButton.removeAttribute("id");
-        }
-        else{
-            dataRecipesLS.push(recipe);
-            localStorage.setItem("Recipes",JSON.stringify(dataRecipesLS));
-            addWishlistDivButton.setAttribute("id", "onWishlist");
-        }
+        // if (!dataRecipesLS) {
+        //     dataRecipesLS = [];
+        // }
 
+        const exist = MyStorageService.recipeExist(recipe.id);
+
+        if (exist) {
+            MyStorageService.removeRecipe(recipe.id);
+
+            if (addWishlistDivButton) {
+                addWishlistDivButton.removeAttribute("id");
+            }
+        }
+        else {
+            MyStorageService.addRecipe(recipe)
+            if (addWishlistDivButton) {
+                addWishlistDivButton.setAttribute("id", "onWishlist");
+            }
+        }
         this.updateWishlist();
     }
-    recipeExistOnWishlist(recipe){
+    recipeExistOnWishlist(recipe) {
         let dataRecipesLS = localStorage.getItem("Recipes");
-        if(!dataRecipesLS) return false;
+        if (!dataRecipesLS) return false;
         dataRecipesLS = JSON.parse(dataRecipesLS);
 
-        return dataRecipesLS.some(tempRecipe => tempRecipe.id === recipe.id);
+        return dataRecipesLS.some(tempRecipe => tempRecipe.id === parseInt(recipe.id));
     }
-    updateWishlist(){
-        const ul = document.querySelector("#wishlistPopup ul");
+    updateWishlist() {
+        let ul = document.querySelector("#wishlistPopup ul");
+        if(ul){
+            ul.remove();
+        }
+        ul = document.createElement("ul");
+        document.querySelector("#wishlistPopup").appendChild(ul);
+        
         ul.innerHTML = "";
-        let recipes = localStorage.getItem("Recipes");
+        let recipes = MyStorageService.getRecipes();
         const frag = document.createDocumentFragment();
-        if(recipes){
-            recipes = JSON.parse(recipes);
+
+        if (recipes) {
             recipes.forEach(recipe => {
                 const li = document.createElement("li");
+                li.id = recipe.id;
                 const img = document.createElement("img");
-                const div = document.createElement("div");
+                const nameRecipeWrapperWishlist = document.createElement("div");
+                nameRecipeWrapperWishlist.id = "nameRecipeWrapperWishlist"
                 const h2 = document.createElement("h4");
+                const buttonWrapperWishlist = document.createElement("div");
+                buttonWrapperWishlist.id = "buttonWrapperWishlist"
+
+                const buttonDel = document.createElement("button");
+                buttonDel.id = "buttonDelLiWishlist"
+                buttonDel.innerHTML = "&#128465;"
+
+                buttonWrapperWishlist.appendChild(buttonDel);
+
                 li.appendChild(img);
-                li.appendChild(div);
-                div.appendChild(h2);
-    
+                li.appendChild(nameRecipeWrapperWishlist);
+                nameRecipeWrapperWishlist.appendChild(h2);
+                li.appendChild(buttonWrapperWishlist);
+
                 img.src = recipe.image;
                 h2.textContent = recipe.title;
-    
-    
-                li.addEventListener('click', () => {
-                    this.updateInformationAboutRecipe(recipe);
-                })
+
                 frag.appendChild(li);
             });
-            ul.appendChild(frag);
+
+            // ul.appendChild(frag);
+            ul.replaceChildren(frag);
+
+            ul.addEventListener('click', (event) => {
+                const target = event.target;
+                const clickedLi = target.closest("li");
+                
+                if (clickedLi) {
+                    const recipe = recipes.find(r => r.id == clickedLi.id);
+                    if (target.id == "buttonDelLiWishlist") {
+                        if (clickedLi) {
+                            this.addORremoveRecipeToLocalStorage(recipe)
+                            clickedLi.remove();
+                        }
+                    }
+                    else {
+                        this.updateInformationAboutRecipe(recipe);
+                    }
+                }
+            })
         }
     }
     updateRecipeForServings(recipe, newServings) {
         const originalServings = recipe.servings;
         const scalingFactor = newServings / originalServings;
-    
+
         const updatedIngredients = recipe.extendedIngredients.map(ingredient => ({
             ...ingredient,
             amount: ingredient.amount * scalingFactor
         }));
-    
+
         return {
             ...recipe,
             servings: newServings,
@@ -344,7 +390,7 @@ class App {
                 const p = li.querySelector('p');
                 return p && p.textContent === element.name;
             });
-    
+
             if (existingLi) {
                 const input = existingLi.querySelector('input');
                 const currentValue = parseFloat(input.value);
@@ -356,15 +402,29 @@ class App {
                 const span = document.createElement("span");
                 const p = document.createElement("p");
                 const button = document.createElement("button");
-    
+
                 input.setAttribute("type", "number");
-                input.setAttribute("step", element.amount / element.servings);
-                input.setAttribute("min", element.amount / element.servings);
+                input.setAttribute("step", element.amount / data.servings);
+                input.setAttribute("min", element.amount / data.servings);
+                
                 input.setAttribute("value", element.amount);
-    
+                // input.setAttribute("readonly", true);
+                input.addEventListener('keydown', (event) => {
+                    if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
+                        event.preventDefault();
+                    }
+                });
+                input.addEventListener('change', () => {
+                    if (parseFloat(input.value) < parseFloat(input.min)) {
+                        input.value = parseFloat(input.min).toFixed(2);
+                    } else {
+                        input.value = parseFloat(input.value).toFixed(2);
+                    }
+                });
+
                 span.textContent = element.measures.metric.unitShort;
                 p.textContent = element.name;
-    
+
                 button.textContent = "x";
                 button.addEventListener("click", function () {
                     if (this.parentElement.parentElement.children.length == 1) {
@@ -373,22 +433,22 @@ class App {
                     }
                     this.parentElement.remove();
                 });
-    
+
                 li.appendChild(div);
                 div.appendChild(input);
                 div.appendChild(span);
                 li.appendChild(p);
                 li.appendChild(button);
-    
+
                 this.shoppingListUL.appendChild(li);
             }
         });
-    
+
         const titleDiv = document.querySelector("#titleDiv");
         titleDiv.style.display = "flex";
         this.shoppingListUL.style.display = "flex";
     }
-    
+
 }
 
 
@@ -402,8 +462,8 @@ class App {
 
 
 const useApiFood = async (type, dataReq) => {
-    // const keyOne = 'c185f3441f5641688170e15ed931f73d';
-    const keyOne = '461dfc19338a4e3ca382ca79d7252235';
+    const keyOne = 'c185f3441f5641688170e15ed931f73d';
+    // const keyOne = '461dfc19338a4e3ca382ca79d7252235';
 
     let result = null;
 
@@ -423,4 +483,41 @@ const useFetch = async (url, options) => {
     const response = await fetch(url, options);
     const json = await response.json();
     return json;
+}
+
+class MyStorageService{
+    static getRecipes(){
+        const recipes = localStorage.getItem("Recipes");
+        if(recipes){
+            return JSON.parse(recipes);
+        }
+        return null;
+    }
+
+    static saveRecipes(recipes){
+        localStorage.setItem("Recipes",JSON.stringify(recipes));
+    }
+    static addRecipe(recipe){
+        debugger;
+        const recipes = this.getRecipes() || [];
+        const exist = this.recipeExist(recipe);
+        if(!exist){
+            recipes.push(recipe);
+            this.saveRecipes(recipes)
+        }
+    }
+    static removeRecipe(recipeId){
+        debugger;
+        const newRecipesList = this.getRecipes().filter(r => r.id !== parseInt(recipeId));
+        this.saveRecipes(newRecipesList);
+    }
+    static recipeExist(recipeId){
+        debugger;
+        console.log(`recipe id on recipeExist ${recipeId}`);
+        const recipes = this.getRecipes();
+        if(!recipes){
+            return false;
+        }
+        return recipes.some(r => r.id === parseInt(recipeId));
+    }
 }

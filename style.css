@@ -192,7 +192,7 @@ header{
 
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 120vh;
+    max-height: 405px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -231,7 +231,28 @@ header{
     margin-left: 25px;
     border-radius: 50px;
 }
+#nameRecipeWrapperWishlist{
+    /* background-color: #fff; */
+    width: 150px;
+    margin-right: 10px;
+}
+#buttonWrapperWishlist{
+    /* background-color: #ff0000; */
+    width: 70px;
+    display: flex;
+    justify-content: center;
+}
+#buttonDelLiWishlist{
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    cursor: pointer;
 
+}
+#buttonDelLiWishlist:hover{
+    transform: scale(1.45);
+}
 
 main{
     /* background-color: aliceblue; */
